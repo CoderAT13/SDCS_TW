@@ -1,0 +1,24 @@
+<!--miniprogram/pages/vote/vote.wxml-->
+<view class="whole">
+  <view class="AllTaskBar" animation="{{cardAni}}">
+  <view class="taskBar" animation="{{aniForDayBar}}" bindtap="">
+    <button bindtap='handle_first'></button>
+    <text>团委委员候选人（等额选举批次）</text>
+  </view>
+  <view class="taskBar" animation="{{aniForMonthBar}}" >
+    <button bindtap='handle_second'></button>
+    <text>团委委员候选人（差额选举批次）</text>
+  </view>
+  <view class="taskBar" animation="{{aniForMonthBar}}" disabled="true" >
+    <button bindtap='handle_third'></button>
+    <text>学生会主席团候选人</text>
+  </view>
+</view>
+<ConfirmDialog id="Notice" showCancel='' msg='{{msg}}' bind:okEvent="noticeOK"/>
+<VoteDialog id="Etw" title="团委委员" note="(等额选举)" array='{{Etw}}' vote_num='3' vote_type="Etw" bind:okEvent="first_ok" bind:cancelEvent="first_cancel" />
+<VoteDialog id="NEtw" title="团委委员" note="(差额选举)" array='{{NEtw}}' vote_num='6' vote_type="NEtw" bind:okEvent="second_ok" bind:cancelEvent="second_cancel" />
+<VoteDialog id="Stu" title="学生会主席团" note="" array='{{Stu}}' vote_num='5' vote_type="Stu" bind:okEvent="third_ok" bind:cancelEvent="third_cancel" />
+<ResultDialog id="EtwRes" array="{{EtwRes}}" title="团委委员" note="(等额选举)"/>
+<ResultDialog id="NEtwRes" array="{{NEtwRes}}" title="团委委员" note="(差额选举)"/>
+<ResultDialog id="StuRes" array="{{StuRes}}" title="学生会主席团" note=""/>
+</view>

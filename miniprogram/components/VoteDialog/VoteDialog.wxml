@@ -1,0 +1,20 @@
+<!--components/Dialog/dialog.wxml-->
+<view hidden="{{!isShow}}">
+    <view class="ys-mask" bindtap='close'></view><!-- 遮罩层 -->
+    <view class="ys-dialog">
+        <view class="ys-dialog-title">{{title}}候选人{{note}}</view>
+        <checkbox-group bindchange="checkboxChange">
+          <label class="vote_label" wx:key="{{item.id}}" class="checkbox" wx:for="{{array}}">
+            <view>
+              <checkbox class="vote_checkbox" value="{{item.id}}" checked="{{item.checked}}" />
+                {{item.value}}
+            </view>
+          </label>
+        </checkbox-group>
+        <view class="ys-dialog-bottom">
+            <view class="ys-dialog-btn" catchtap='_cancelEvent'>弃权</view>
+            <view class="ys-dialog-btn ys-dialog-ok-btn" catchtap='_okEvent' wx:if='{{enableOK}}'>确定</view>
+        </view>
+    </view>
+</view>
+<ConfirmDialog id="Giveup" msg="确定弃权吗？" />

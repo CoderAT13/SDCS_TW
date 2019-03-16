@@ -1,0 +1,23 @@
+<!--pages/index/index.wxml-->
+<view class='whole'>
+<view id='topBar'>
+  <button class="userinfo-avatar" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> N </button>
+  <image class='userinfo-avatar' wx:if="{{!(!hasUserInfo && canIUse)}}"  bindtap="toUserIndex" src="{{userInfo.avatarUrl}}"></image>
+</view>
+<view class="AllTaskBar" animation="{{cardAni}}">
+  <view class="taskBar" animation="{{aniForDayBar}}" bindtap="navigate_to_vote">
+    <text>第四次团员代表大会暨学生代表大会</text>
+  </view>
+  <view class="taskBar" animation="{{aniForMonthBar}}" >
+    <text>More Function Coming……</text>
+  </view>
+  
+</view>
+<dialog id="dialog" bind:okEvent="okEvent"/>
+<view id="announcement">Copyright © 2019 SDCS团委. 保留所有权利。</view>
+</view>
+
+
+
+
+

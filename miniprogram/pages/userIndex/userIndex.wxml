@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+<view class='topBar1'></view>
+<view class='topBar2' animation="{{topBarAni1}}"></view>
+<view class='topBar3' animation="{{topBarAni2}}"></view>
+<view class='topBar4' animation="{{topBarAni3}}"></view>
+  <view class="card" animation="{{topBarAni4}}">
+    <view class="userinfo">
+      <block>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="userinfo-point">姓名:\t{{Name}}</text>
+        <text class="userinfo-point">学号:\t{{Sid}}</text>
+        <text class="userinfo-point">专业:\t{{Major}}</text>
+        <text class="userinfo-point">年级:\t{{Grade}}级</text>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="sudo_bar" wx:if="{{is_sudo==true}}">
+  <view>团委等额 <switch checked="{{Etw}}" bindchange='handleEtw'/></view>
+  <view>团委差额 <switch checked="{{NEtw}}" bindchange='handleNEtw'/></view>
+  <view>学生会的 <switch checked="{{Stu}}" bindchange='handleStu'/></view>
+</view>

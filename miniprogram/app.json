@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/userIndex/userIndex",
+    "pages/vote/vote"
+  ],
+  "window": {
+    "backgroundColor": "pink",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#35A7C4",
+    "navigationBarTitleText": "SDCS团委",
+    "navigationBarTextStyle": "white"
+  }
+}

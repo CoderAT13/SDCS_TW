@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "VoteDialog": "/components/VoteDialog/VoteDialog",
+    "ResultDialog": "/components/ResultDialog/ResultDialog",
+    "ConfirmDialog": "/components/ConfirmDialog/ConfirmDialog"
+  }
+}
