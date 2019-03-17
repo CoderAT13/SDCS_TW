@@ -5,7 +5,7 @@
         <view class="ys-dialog-title">学生信息</view>
         <view class="selectBox">
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <span class="title">专业：(点击选择）</span>
+            <span class="title">专业：</span>
               <view class="picker">
                 {{array[index]}}
               </view>
@@ -13,7 +13,7 @@
         </view>
         <view class="selectBox">
           <picker bindchange="bindGradeChange" value="{{grade_index}}" range="{{grade}}">
-            <span class="title">年级：(点击选择）</span>
+            <span class="title">年级：</span>
               <view class="picker">
                 {{grade[grade_index]}}
               </view>

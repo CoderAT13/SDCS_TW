@@ -14,7 +14,12 @@ Page({
    */
   data: {
     userInfo: {},
-    msg: ["投票前，请仔细阅读以下事项：","·投票分别用于选举产生中山大学数据科学与计算机学院团委委员和学生会主席团成员，投票人为中山大学数据科学与计算机学院团员代表大会暨学生代表大会代表。","·专职团干团委委员候选人勾选人数应少于等于3人，学生团委委员候选人勾选人数应少于或等于6人；学生会主席团候选人勾选人数应少于或等于5人。","·向候选人外的成员投票，请填写会议材料第43页的纸质选票后，撕下举手交给附近工作人员"],
+    msg: [
+      "投票前，请仔细阅读以下事项：",
+      "·投票分别用于选举产生中山大学数据科学与计算机学院团委委员和学生会主席团成员，投票人为中山大学数据科学与计算机学院团员代表大会暨学生代表大会代表。",
+      "·专职团干团委委员候选人勾选人数应少于等于3人，学生团委委员候选人勾选人数应少于或等于6人；学生会主席团候选人勾选人数应少于或等于5人。",
+      "·向候选人外的成员投票，请填写会议材料第43页的纸质选票后，撕下举手交给附近工作人员"
+      ],
     Etw: [
       {id: 1, value: '黄玲娟'},
       { id: 2, value: '刘晓' },
@@ -160,45 +165,49 @@ Page({
     for (let i = 0; i < EtwRes.length; i++){
       EtwRes[i].value = 0;
     }
-    if (!this.data.userInfo.Etw){
-      db.collection("System").doc("vote_system").get({
-        success: function(res){
-          if(res.data.Etw){
+    let end = false;
+    let open = false;
+    db.collection("System").doc("vote_system").get({
+      success: function(res){
+        end = res.data.EtwEnd;
+        open = res.data.Etw;
+        if (!tmp.data.userInfo.Etw && !end) {
+          if (open) {
             tmp.Etw.show();
           }
-          else{
+          else {
             wx.showToast({
               title: '投票未开启',
-              icon: 'none',
-              
+              icon: 'loading',
             })
           }
         }
-      })
-    }
-    else{
-      db.collection('Etw').where({
-        done: true
-      }
-      ).get({
-        success(res) {
-          //console.log(res);
-          let data = res.data;
-          //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
-          for (let i = 0; i < data.length; i++){
-            if (data[i].GiveUP) EtwRes[3].value++;
-            if (data[i].Choose[0]) EtwRes[0].value++;
-            if (data[i].Choose[1]) EtwRes[1].value++;
-            if (data[i].Choose[2]) EtwRes[2].value++;
+        else {
+          db.collection('Etw').where({
+            done: true
           }
-          EtwRes[4].value = data.length;
-          tmp.setData({
-            EtwRes: EtwRes
+          ).get({
+            success(res) {
+              //console.log(res);
+              let data = res.data;
+              //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
+              for (let i = 0; i < data.length; i++) {
+                if (data[i].GiveUP) EtwRes[3].value++;
+                if (data[i].Choose[0]) EtwRes[0].value++;
+                if (data[i].Choose[1]) EtwRes[1].value++;
+                if (data[i].Choose[2]) EtwRes[2].value++;
+              }
+              EtwRes[4].value = data.length;
+              tmp.setData({
+                EtwRes: EtwRes
+              })
+              tmp.EtwRes.show();
+            }
           })
-          tmp.EtwRes.show();
-        }
-      })
-    }   
+        }   
+      }
+    })
+    
   },
 
   handle_second: function () {
@@ -208,49 +217,54 @@ Page({
     for (let i = 0; i < NEtwRes.length; i++) {
       NEtwRes[i].value = 0;
     }
-    if (!this.data.userInfo.NEtw) {
-      db.collection("System").doc("vote_system").get({
-        success: function (res) {
-          if (res.data.NEtw) {
+    let end = false;
+    let open = false;
+    db.collection("System").doc("vote_system").get({
+      success: function (res) {
+        end = res.data.NEtwEnd;
+        open = res.data.NEtw;
+        if (!tmp.data.userInfo.NEtw && !end) {
+          if (open) {
             tmp.NEtw.show();
           }
           else {
             wx.showToast({
               title: '投票未开启',
-              icon: 'none',
+              icon: 'loading',
             })
           }
         }
-      })
-    }
-    else {
-      db.collection('NEtw').where({
-        done: true
-      }
-      ).get({
-        success(res) {
-          //console.log(res);
-          let data = res.data;
-          //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
-          for (let i = 0; i < data.length; i++) {
-            if (data[i].GiveUP) NEtwRes[8].value++;
-            if (data[i].Choose[0]) NEtwRes[0].value++;
-            if (data[i].Choose[1]) NEtwRes[1].value++;
-            if (data[i].Choose[2]) NEtwRes[2].value++;
-            if (data[i].Choose[3]) NEtwRes[3].value++;
-            if (data[i].Choose[4]) NEtwRes[4].value++;
-            if (data[i].Choose[5]) NEtwRes[5].value++;
-            if (data[i].Choose[6]) NEtwRes[6].value++;
-            if (data[i].Choose[7]) NEtwRes[7].value++;
+        else {
+          db.collection('NEtw').where({
+            done: true
           }
-          NEtwRes[9].value = data.length;
-          tmp.setData({
-            NEtwRes: NEtwRes
+          ).get({
+            success(res) {
+              //console.log(res);
+              let data = res.data;
+              //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
+              for (let i = 0; i < data.length; i++) {
+                if (data[i].GiveUP) NEtwRes[8].value++;
+                if (data[i].Choose[0]) NEtwRes[0].value++;
+                if (data[i].Choose[1]) NEtwRes[1].value++;
+                if (data[i].Choose[2]) NEtwRes[2].value++;
+                if (data[i].Choose[3]) NEtwRes[3].value++;
+                if (data[i].Choose[4]) NEtwRes[4].value++;
+                if (data[i].Choose[5]) NEtwRes[5].value++;
+                if (data[i].Choose[6]) NEtwRes[6].value++;
+                if (data[i].Choose[7]) NEtwRes[7].value++;
+              }
+              NEtwRes[9].value = data.length;
+              tmp.setData({
+                NEtwRes: NEtwRes
+              })
+              tmp.NEtwRes.show();
+            }
           })
-          tmp.NEtwRes.show();
-        }
-      })
-    } 
+        } 
+      }
+    })
+    
   },
 
   handle_third: function () {
@@ -261,48 +275,52 @@ Page({
     for (let i = 0; i < StuRes.length; i++) {
       StuRes[i].value = 0;
     }
-    if (!this.data.userInfo.Stu) {
-      db.collection("System").doc("vote_system").get({
-        success: function (res) {
-          if (res.data.Stu) {
+    let end = false;
+    let open = false;
+    db.collection("System").doc("vote_system").get({
+      success: function (res) {
+        end = res.data.StuEnd;
+        open = res.data.Stu;
+        if (!tmp.data.userInfo.Stu && !end) {
+          if (open) {
             tmp.Stu.show();
           }
           else {
             wx.showToast({
               title: '投票未开启',
-              icon: 'none',
-
+              icon: 'loading',
             })
           }
         }
-      })
-    }
-    else {
-      db.collection('Stu').where({
-        done: true
-      }
-      ).get({
-        success(res) {
-          //console.log(res);
-          let data = res.data;
-          //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
-          for (let i = 0; i < data.length; i++) {
-            if (data[i].GiveUP) StuRes[6].value++;
-            if (data[i].Choose[0]) StuRes[0].value++;
-            if (data[i].Choose[1]) StuRes[1].value++;
-            if (data[i].Choose[2]) StuRes[2].value++;
-            if (data[i].Choose[3]) StuRes[3].value++;
-            if (data[i].Choose[4]) StuRes[4].value++;
-            if (data[i].Choose[5]) StuRes[5].value++;
+        else {
+          db.collection('Stu').where({
+            done: true
           }
-          StuRes[7].value = data.length;
-          tmp.setData({
-            StuRes: StuRes
+          ).get({
+            success(res) {
+              //console.log(res);
+              let data = res.data;
+              //let count_0 = 0, count_1 = 0, count_2 = 0, count_3 = 0, count_4 = 0;
+              for (let i = 0; i < data.length; i++) {
+                if (data[i].GiveUP) StuRes[6].value++;
+                if (data[i].Choose[0]) StuRes[0].value++;
+                if (data[i].Choose[1]) StuRes[1].value++;
+                if (data[i].Choose[2]) StuRes[2].value++;
+                if (data[i].Choose[3]) StuRes[3].value++;
+                if (data[i].Choose[4]) StuRes[4].value++;
+                if (data[i].Choose[5]) StuRes[5].value++;
+              }
+              StuRes[7].value = data.length;
+              tmp.setData({
+                StuRes: StuRes
+              })
+              tmp.StuRes.show();
+            }
           })
-          tmp.StuRes.show();
-        }
-      })
-    } 
+        } 
+      }
+    })
+    
   },
 
   first_ok: function() {

@@ -213,6 +213,13 @@ Page({
     const tmp = this;
     const dialog = this.dialog;
     const pack = this.dialog.onOk();
+    if (pack === false){
+      wx.showToast({
+        title: '请选择专业、年级',
+        icon: 'none'
+      })
+      return;
+    }
     wx.showModal({
       title: '提示',
       content: '请确认信息的正确性\r\n确认后姓名、学号无法修改',

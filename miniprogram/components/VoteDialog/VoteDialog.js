@@ -56,24 +56,10 @@ Component({
       this.setData({
         selected: e.detail.value
       })
-      if (e.detail.value.length <= this.data.vote_num){
-        if (this.data.vote_type === "Etw"){
-          if (e.detail.value.length === this.data.vote_num){
-            this.setData({
-              enableOK: true
-            })
-          }
-          else{
-            this.setData({
-              enableOK: false
-            })
-          }
-        }
-        else{
-          this.setData({
-            enableOK: true
-          })
-        }        
+      if (e.detail.value.length <= this.data.vote_num && e.detail.value.length!==0){
+        this.setData({
+          enableOK: true
+        })         
       }else{
         this.setData({
           enableOK: false

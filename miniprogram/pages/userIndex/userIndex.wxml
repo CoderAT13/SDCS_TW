@@ -17,8 +17,18 @@
     </view>
   </view>
 </view>
-<view class="sudo_bar" wx:if="{{is_sudo==true}}">
+<view class="control_container" wx:if="{{is_sudo==true}}">
+<view class="contorl-title">控制台</view>
+<view class="sudo_bar" >
+  <view>开启投票通道:</view>
   <view>团委等额 <switch checked="{{Etw}}" bindchange='handleEtw'/></view>
   <view>团委差额 <switch checked="{{NEtw}}" bindchange='handleNEtw'/></view>
   <view>学生会的 <switch checked="{{Stu}}" bindchange='handleStu'/></view>
+</view>
+<view class="sudo_bar">
+  <view>结束投票:</view>
+  <view>结束等额 <switch checked="{{EtwEnd}}" bindchange='handleEtwEnd'/></view>
+  <view>结束差额 <switch checked="{{NEtwEnd}}" bindchange='handleNEtwEnd'/></view>
+  <view>结束学生 <switch checked="{{StuEnd}}" bindchange='handleStuEnd'/></view>
+</view>
 </view>

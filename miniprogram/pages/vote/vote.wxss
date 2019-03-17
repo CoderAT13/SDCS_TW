@@ -10,7 +10,7 @@ overflow: hidden;
 width:100%;
 height:100%;
 background: url('https://7375-suprise-for-life-afda2f-1258247386.tcb.qcloud.la/background.png?sign=771a6445a9a985d23a940ea4bb637824&t=1552738177');
-background-size: cover;
+background-size: contain;
 }
 
 #topBar{
@@ -144,4 +144,13 @@ image{
 .AllTaskBar{
   position: relative;
   top:80rpx;
+}
+
+#announcement {
+  position: absolute;
+  bottom: 3%;
+  font-size: 10px;
+  color: rgb(127,127,127);
+  width: 100%;
+  text-align: center;
 }

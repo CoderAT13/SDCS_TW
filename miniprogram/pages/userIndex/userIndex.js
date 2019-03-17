@@ -20,7 +20,10 @@ Page({
     is_sudo: false,
     Etw: true,
     NEtw: true,
-    Stu: true
+    Stu: true,
+    EtwEnd: false,
+    NEtwEnd: false,
+    StuEnd: false,
   },
   //事件处理函数
   onLoad: function () {
@@ -70,7 +73,10 @@ Page({
         tmp.setData({
           Etw: e.data.Etw,
           NEtw: e.data.NEtw,
-          Stu: e.data.Stu
+          Stu: e.data.Stu,
+          EtwEnd: e.data.EtwEnd,
+          NEtwEnd: e.data.NEtwEnd,
+          StuEnd: e.data.StuEnd,
         })
       }
     })
@@ -118,32 +124,44 @@ Page({
   },
   
   handleEtw: function(e) {
-    db.collection("System").doc("vote_system").update({
-      data:{
-        Etw: e.detail.value,
-      },  
-      success: function(k){
-        if (e.detail.value){
+    console.log(e.detail.value);
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
+      data: {
+        docid: 'vote_system',
+        api_name: 'Etw',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
           wx.showToast({
-            title: '开启团委等额',
+            title: '开启专职团干',
           })
         }
-        else{
+        else {
           wx.showToast({
-            title: '关闭团委等额',
+            title: '关闭专职团干',
           })
         }
+      }, fail: function (res) {
+        console.log(res)
       }
     })
   },
 
   handleNEtw: function (e) {
-    db.collection("System").doc("vote_system").update({
+    console.log(e.detail.value);
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
       data: {
-        NEtw: e.detail.value,
-      },
-      success: function (k) {
-        if (e.detail.value) {
+        docid: 'vote_system',
+        api_name: 'NEtw',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
           wx.showToast({
             title: '开启团委差额',
           })
@@ -153,20 +171,24 @@ Page({
             title: '关闭团委差额',
           })
         }
+      }, fail: function (res) {
+        console.log(res)
       }
     })
   },
 
   handleStu: function (e) {
     console.log(e.detail.value);
-
-    db.collection("System").doc("vote_system").update({
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
       data: {
-        Stu: e.detail.value,
-      },
-      success: function (k) {
-        console.log(k);
-        if (e.detail.value) {
+        docid: 'vote_system',
+        api_name: 'Stu',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
           wx.showToast({
             title: '开启学生会',
           })
@@ -176,9 +198,89 @@ Page({
             title: '关闭学生会',
           })
         }
-      },
-      fail(e){
-        console.log(e);
+      }, fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+
+  handleEtwEnd: function (e) {
+    console.log(e.detail.value);
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
+      data: {
+        docid: 'vote_system',
+        api_name: 'EtwEnd',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
+          wx.showToast({
+            title: '结束投票',
+          })
+        }
+        else {
+          wx.showToast({
+            title: '取消',
+          })
+        }
+      }, fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+
+  handleNEtwEnd: function (e) {
+    console.log(e.detail.value);
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
+      data: {
+        docid: 'vote_system',
+        api_name: 'NEtwEnd',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
+          wx.showToast({
+            title: '结束投票',
+          })
+        }
+        else {
+          wx.showToast({
+            title: '取消',
+          })
+        }
+      }, fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+
+  handleStuEnd: function (e) {
+    console.log(e.detail.value);
+    const value = e.detail.value;
+    wx.cloud.callFunction({
+      name: 'vote_system',
+      data: {
+        docid: 'vote_system',
+        api_name: 'StuEnd',
+        api_value: value
+      }, success: function (res) {
+        console.log(res)
+        if (value) {
+          wx.showToast({
+            title: '结束投票',
+          })
+        }
+        else {
+          wx.showToast({
+            title: '取消',
+          })
+        }
+      }, fail: function (res) {
+        console.log(res)
       }
     })
   },

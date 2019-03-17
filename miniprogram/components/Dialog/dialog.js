@@ -8,9 +8,9 @@ Component({
   },
   data: {
     isShow: false,
-    array: ["计算机类","信息与计算科学","软件工程","保密管理","其他"],
+    array: ["请选择专业","老师","计算机类","信息与计算科学","软件工程","保密管理","其他"],
     index: 0,
-    grade: ["2018","2017","2016","2015","2014","2013","2012","2011","2010","2009"],
+    grade: ["请选择年级","老师","2018","2017","2016","2015","2014","2013","2012","2011","2010","2009"],
     grade_index: 0,
     sid: 0,
     name: " "
@@ -62,7 +62,9 @@ Component({
           Stu: false,
           Admin: false
         };
-        return responseJSON;
+        if (this.data.index === 0 || this.data.grade_index === 0)
+        return false;
+        else return responseJSON;
       }catch(e){
         console.log(e);
       }
