@@ -106,3 +106,16 @@ page{
 .control-title{
   font-size: 20px;
 }
+
+.userinfo-detail{
+  font-size: 30rpx;
+}
+
+.item-title{
+  display: inline-block;
+  
+}
+
+.item-detail{
+  display: inline-block;
+}

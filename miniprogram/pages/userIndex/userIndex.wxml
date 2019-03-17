@@ -9,10 +9,25 @@
       <block>
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        <text class="userinfo-point">姓名:\t{{Name}}</text>
-        <text class="userinfo-point">学号:\t{{Sid}}</text>
-        <text class="userinfo-point">专业:\t{{Major}}</text>
-        <text class="userinfo-point">年级:\t{{Grade}}级</text>
+        <view class="userinfo-detail">
+          <view class="detail-item">
+            <view class='item-title'>姓名：</view>
+            <view class='item-detail'>{{Name}}</view>
+          </view>
+          <view class="detail-item">
+            <view class='item-title'>学号：</view>
+            <view class='item-detail'>{{Sid}}</view>
+          </view>
+          <view class="detail-item">
+            <view class='item-title'>专业：</view>
+            <view class='item-detail'>{{Major}}</view>
+          </view>
+          <view class="detail-item">
+            <view class='item-title'>年级：</view>
+            <view class='item-detail'>{{Grade}}级</view>
+          </view>
+        
+        </view>
       </block>
     </view>
   </view>
