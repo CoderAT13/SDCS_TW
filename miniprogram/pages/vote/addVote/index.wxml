@@ -1,0 +1,47 @@
+<!--miniprogram/pages/vote/addVote/index.wxml-->
+
+<wux-toast id="wux-toast" />
+<wux-fab-button position="bottomLeft" theme="calm" direction="horizontal" reverse="true" spaceBetween="30" sAngle="0" eAngle="360" buttons="{{ buttons }}" bind:change="onChange" bind:click="onClick" bind:contact="onContact"  />
+<wux-popup position="bottom" visible="{{ visible }}" bind:close="closePopup">
+    <wux-cell-group title="新建投票对象">
+        <view wx:key="{{item}}" wx:for="{{IR}}">
+        <wux-cell hover-class="none" title="">
+          <wux-input placeholder='输入名称' onchange='bindKeyInput' value="{{inputValue}}" />
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-button block type="balanced" bindtap="addOK">OK</wux-button>
+        </wux-cell>
+        </view>
+    </wux-cell-group>
+</wux-popup>
+<view id="whole">
+  <wux-cell-group title="投票设置" >
+    <wux-cell hover-class="none">
+      <wux-input label="投票标题" placeholder='请输入标题' onchange="handleChange" data-id="title" />
+    </wux-cell>
+    <wux-cell hover-class="none" title="最少投票">
+      <wux-input-number shape="circle" color="calm" slot="footer" min="{{0}}"  bind:change="handleChange" data-id="min"/>
+    </wux-cell>
+    <wux-cell hover-class="none" title="最大投票">
+      <wux-input-number shape="circle" color="calm" slot="footer"  min="{{0}}"  bind:change="handleChange" data-id="max"/>
+    </wux-cell>
+    <wux-cell title="允许弃权">
+      <wux-switch name="calm" slot="footer" color="calm" value="{{canGiveUp}}" bind:change="handleGiveUp" />
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group title="投票对象"  >
+    <view wx:key="{{item}}" wx:for="{{voteMember}}" >
+      <swipeout class="vote-cell">
+          <view slot="content" class="content-container">
+            <view class="item-title">Object{{index+1}}</view>
+            <view class="item-name">{{item.name}}</view>
+            <wux-icon class="back-icon" size="16" type="ios-arrow-back" />
+          </view>
+          
+          <view slot="button" class="i-swipeout-demo-button-group" style="background:#ef473a;">
+            <view class="i-swipeout-demo-button" style="width:60px" bindtap="handleDelete" data-id="{{index}}"> <wux-icon type="ios-close-circle-outline"></wux-icon></view>
+          </view>
+      </swipeout>
+    </view>
+  </wux-cell-group>
+</view>

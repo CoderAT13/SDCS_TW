@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "SDCS团委",
+  "usingComponents": {
+    "wux-white-space": "/components/dist/white-space/index",
+    "wux-button": "/components/dist/button/index",
+    "wux-progress": "/components/dist/progress/index"
+  },
+  "navigationBarBackgroundColor": "#444"
+}

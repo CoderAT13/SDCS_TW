@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "dialog": "/components/Dialog/dialog"
+    "wux-icon": "/components/dist/icon/index",
+    "wux-grids": "/components/dist/grids/index",
+    "wux-grid": "/components/dist/grid/index"
   }
 }

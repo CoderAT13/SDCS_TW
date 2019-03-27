@@ -1,0 +1,14 @@
+/* miniprogram/pages/vote/viewResult/index.wxss */
+.space{
+  display: inline-block;
+  width: 30px;
+}
+wux-button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.height-space{
+  height: 6%;
+  width: 100%;
+}

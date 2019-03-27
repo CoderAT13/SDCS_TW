@@ -1,0 +1,41 @@
+/* miniprogram/pages/vote/addVote/index.wxss */
+.i-swipeout-demo-button-group{
+    height:100%;
+    width:100%;
+}
+.i-swipeout-demo-button{
+    width:70px;
+    float:left;
+    display: flex;
+    height:100%;
+    justify-content: center;
+    background:#ef473a;
+    color:#fff;
+    align-items:center;
+}
+
+swipeout{
+  width: 100%;
+  height: 100%;
+}
+
+.vote-cell{
+  margin: 0;
+  padding: 0;
+}
+
+.content-container{
+  width: 100%;
+}
+
+.item-title{
+  display: inline-block;
+  width: 15%;
+}
+
+.item-name{
+  display: inline-block;
+  width: 70%;
+  margin-right: 10%;
+  text-align: center;
+}

@@ -1,0 +1,29 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{Vote.Title}}</view>
+        <view class="page__desc">投票结果</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <view wx:for="{{Vote.Objects}}" wx:key="{{item}}">
+          <view class="sub-title">{{item.name}}
+          <view class='space'/>
+          {{Vote.Votes[index]}}
+          <view class='space'/>
+          {{Votes_Percent[index]}}%
+        </view>
+          <wux-progress  bar-style="background-color: #{{Colors[index]}}" percent="{{Votes_Percent[index]}}" />
+        </view>
+        
+        <view class="sub-title">
+          Total
+          <view class='space'/>
+          {{Vote.Total}}
+          <view class='space'/>
+          100%
+        </view>
+          <wux-progress bar-style="background-color: #444" percent="{{100}}" />
+    </view>
+    <view class="height-space" />
+    
+</view>
+<wux-button block bindtap="handleback" type="dark">返回</wux-button>

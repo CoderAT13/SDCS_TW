@@ -1,0 +1,19 @@
+<wux-toast id="wux-toast" />
+<view class="mask" wx:if="{{mask}}"></view>
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{Vote.Title}}</view>
+        <view class="page__desc">至少投票:{{Vote.Min}} 最多投票:{{Vote.Max}}</view>
+    </view>
+    <view class="page__bd">
+            <wux-checkbox-group name="votes" value="{{ result }}" title="Default" bind:change="onChange1" >
+                <view wx:for="{{Vote.Objects}}" wx:key="{{item}}">
+                  <wux-checkbox color="dark" title="{{item.name}}" value="{{index}}" wx:if="{{item.name!='弃权'}}" />
+                </view>
+            </wux-checkbox-group>
+            <view class="btn-area">
+                <wux-button block clear type="assertive" bindtap="giveUp" disabled='{{!(Vote.CanGiveUp)}}'>弃权</wux-button>
+                <wux-button block clear type="balanced" disabled='{{!canVote}}' bindtap="submit_vote">投票</wux-button>
+            </view>
+    </view>
+</view>

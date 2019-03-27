@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "wux-icon": "/components/dist/icon/index",
+    "wux-grids": "/components/dist/grids/index",
+    "wux-grid": "/components/dist/grid/index",
+    "wux-fab-button": "/components/dist/fab-button/index",
+    "swipeout": "/components/dist/swipeout/index",
+    "wux-switch": "/components/dist/switch/index",
+    "wux-cell-group": "/components/dist/cell-group/index",
+    "wux-cell": "/components/dist/cell/index"
+  },
+  "navigationBarBackgroundColor": "#444"
+}

@@ -1,25 +1,30 @@
 <!--miniprogram/pages/vote/vote.wxml-->
+<wux-popup position="top" visible="{{ visible }}" bind:close="searchClose">
+    <wux-cell-group title="Search By Vote Name">
+        <wux-cell hover-class="none">
+          <wux-input placeholder='输入名称' onchange='bindKeyInput' value="{{inputValue}}" />
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-button block type="balanced" bindtap="doSearch">Search</wux-button>
+        </wux-cell>
+    </wux-cell-group>
+</wux-popup>
+<wux-toast id="wux-toast" />
+<wux-icon id="search" type="ios-search" bindtap='search' />
+
+
+<wux-fab-button position="bottomRight" theme="royal" direction="vertical"  spaceBetween="30" sAngle="0" eAngle="360" buttons="{{ buttons }}" bind:change="onChange" bind:click="onClick" bind:contact="onContact" />
 <view class="whole">
-  <view class="AllTaskBar" animation="{{cardAni}}">
-  <view class="taskBar" animation="{{aniForDayBar}}" bindtap="">
-    <button bindtap='handle_first'></button>
-    <text>团委委员专职团干选举（等额选举）</text>
+  <view class="page__hd"> 
+        <view class="page__title">Vote</view>
+        <view class="page__desc">正在进行的投票</view>
   </view>
-  <view class="taskBar" animation="{{aniForMonthBar}}" >
-    <button bindtap='handle_second'></button>
-    <text>团委委员选举（差额选举）</text>
+  <view class="page_bd">
+    <wux-grids square >
+      <wux-grid bindtap="enterVote" wx:for="{{Votes}}" wx:key="{{item}}" data-id="{{index}}" data-vote="{{item}}"> 
+      <wux-icon type='ios-flag' />
+      <view>{{item.Title}}</view>
+    </wux-grid>
+    </wux-grids>
   </view>
-  <view class="taskBar" animation="{{aniForMonthBar}}" disabled="true" >
-    <button bindtap='handle_third'></button>
-    <text>学生会主席团选举</text>
-  </view>
-</view>
-<ConfirmDialog id="Notice" showCancel='' msg='{{msg}}' bind:okEvent="noticeOK"/>
-<VoteDialog id="Etw" title="团委委员专职团干" note="（等额选举）" array='{{Etw}}' vote_num='3' vote_type="Etw" bind:okEvent="first_ok" bind:cancelEvent="first_cancel" />
-<VoteDialog id="NEtw" title="团委委员" note="(差额选举)" array='{{NEtw}}' vote_num='6' vote_type="NEtw" bind:okEvent="second_ok" bind:cancelEvent="second_cancel" />
-<VoteDialog id="Stu" title="学生会主席团" note="" array='{{Stu}}' vote_num='5' vote_type="Stu" bind:okEvent="third_ok" bind:cancelEvent="third_cancel" />
-<ResultDialog id="EtwRes" array="{{EtwRes}}" title="团委委员专职团干" note=""/>
-<ResultDialog id="NEtwRes" array="{{NEtwRes}}" title="团委委员" note="(差额选举)"/>
-<ResultDialog id="StuRes" array="{{StuRes}}" title="学生会主席团" note=""/>
-<view id="announcement">Copyright © 2019 SDCS团委. 保留所有权利。</view>
 </view>

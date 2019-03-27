@@ -1,0 +1,34 @@
+<!--miniprogram/pages/vote/setVote/index.wxml-->
+<view wx:if="{{isShow}}">
+    <view class="ys-mask" bindtap="closeDialog"></view><!-- 遮罩层 -->
+    <view class="ys-dialog">
+        <view class="ys-dialog-title">{{Vote.Title}}</view>
+        <view class="ys-dialog-content">
+          <wux-cell title="公开通道">
+            <wux-switch slot="footer" color="dark" value="{{Vote.Open}}" bind:change="handleSet" data-type="Open" />
+          </wux-cell>
+          <wux-cell title="结束投票（只可看结果）">
+            <wux-switch slot="footer" color="dark" value="{{Vote.End}}" bind:change="handleSet" data-type="End" />
+          </wux-cell>
+        </view>
+        <view class="ys-dialog-bottom">
+            <view class="ys-dialog-btn" bindtap="deleteVote">删除</view>
+        </view>
+    </view>
+</view>
+
+
+<view class="whole">
+  <view class="page__hd">
+        <view class="page__title">Set</view>
+        <view class="page__desc">设置你的投票</view>
+  </view>
+  <view class="page_bd">
+    <wux-grids square >
+      <wux-grid bindtap="enterVote" wx:for="{{Votes}}" wx:key="{{item}}" data-id="{{index}}" data-vote="{{item}}"> 
+      <wux-icon type='ios-flag' />
+      <view>{{item.Title}}</view>
+    </wux-grid>
+    </wux-grids>
+  </view>
+</view>

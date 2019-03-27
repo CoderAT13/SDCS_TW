@@ -1,9 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/vote/vote",
+    "pages/vote/addVote/index",
     "pages/logs/logs",
     "pages/userIndex/userIndex",
-    "pages/vote/vote"
+    "pages/vote/setVote/index",
+    "pages/vote/viewResult/index",
+    "pages/vote/doVote/index"
   ],
   "window": {
     "backgroundColor": "pink",

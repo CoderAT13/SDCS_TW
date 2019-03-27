@@ -6,11 +6,20 @@ height:100%;
 overflow: hidden;
 }
 
+.mask{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
 .whole{
 width:100%;
 height:100%;
-background: url('https://7375-suprise-for-life-afda2f-1258247386.tcb.qcloud.la/background.png?sign=771a6445a9a985d23a940ea4bb637824&t=1552738177');
-background-size: contain;
+background-size: cover;
 }
 
 #topBar{
@@ -23,32 +32,6 @@ background-size: contain;
   z-index: 10;
   box-shadow: 0rpx 0rpx 10rpx rgb(153, 153, 153);
 }
-#plusButton{
-  top: 40rpx;
-  left: 45%;
-  position: fixed;
-}
-#plusButton:hover #plus{
-  box-shadow: 0rpx 0rpx 0rpx rgb(153, 153, 153);
-}
-#plus{
-  transition: box-shadow 0.25s;
-  box-shadow: 0rpx 0rpx 20rpx rgb(153, 153, 153);
-  background-color: rgb(255, 118, 118);
-  color: white;
-  font-size: 50rpx;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90rpx;
-  height: 90rpx;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-}
-#plus text{
-  margin-left: auto;
-  margin-right: auto;
-}
 .userinfo-avatar {
   position: relative;
   left: 600rpx;
@@ -57,88 +40,14 @@ background-size: contain;
   margin: 20rpx;
   border-radius: 50%;
 }
+
 image{
   box-shadow: 0rpx 0rpx 30rpx rgb(121, 121, 121);
   margin: 0rpx;
 }
-.taskBar{
-  display: flex;
-  margin-top: 20rpx;
-  margin-left: 7%;
-  padding: 20rpx;
-  min-height: 100rpx;
-  width: 80%;
-  background-color: rgb(253, 147, 98);
-  box-shadow: 0rpx 0rpx 10rpx rgba(121, 121, 121, 0.685);
-  border-radius: 30rpx 30rpx 30rpx 30rpx;
-  position: relative;
-}
-.taskBar>text{
-  width: 87%;
-  margin: 30rpx;
-  font-weight: bold;
-  font-size: 33rpx;
-  color: white;
-}
-.taskButton{
-  border-radius: 50rpx;
-  position: relative;
-  left: 85%;
-  top: -60rpx;
-  display: inline-block;
-  width: 200rpx;
-}
 
-.taskName{
-  padding-left: 20rpx;
-  display: inline-block;
-  color: white;
-  width: 700rpx;
-}
-
-.dayTaskBar{
-  z-index: 3;
-}
-
-.monthTaskBar{
-    /* top: -100rpx; */
-    z-index: 2;
-}
-
-.yearTaskBar{
-  /* top: -200rpx; */
-  z-index: 1;
-}
-
-.taskfinished{
-  border-left: 10rpx rgb(115, 192, 0) solid;
-  margin-top: 10rpx;
-  margin-bottom: 10rpx;
-  margin-left: 40rpx;
-  margin-right: 40rpx;
-  height: 90rpx;
-}
-
-.taskfinished text{
-  text-decoration:line-through;
-}
-
-.taskunfinished{
-  border-left: 10rpx rgb(255, 123, 123) solid;
-  margin-top: 10rpx;
-  margin-bottom: 10rpx;
-  margin-left: 40rpx;
-  margin-right: 40rpx;
-  height: 90rpx;
-}
-
-#plusButton{
-  text-align: center;
-}
-
-.AllTaskBar{
-  position: relative;
-  top:80rpx;
+#Grid-Container{
+  margin-top: 50px; 
 }
 
 #announcement {
@@ -148,4 +57,16 @@ image{
   color: rgb(127,127,127);
   width: 100%;
   text-align: center;
+}
+
+.page_devider{
+  width: 100%;
+  height: 20%;
+}
+
+#info-icon{
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  
 }

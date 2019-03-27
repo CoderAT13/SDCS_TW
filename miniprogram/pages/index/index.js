@@ -1,7 +1,6 @@
 // pages/index/index.js
 
 const app = getApp();
-var usr_id = "";
 wx.cloud.init({
   env: "surprise-for-life-afda2f",
   traceUser: true
@@ -16,9 +15,7 @@ Page({
    */
   data: {
     adminOpenId: 'oLa764gw9AKVXkVEGV3qPZFEMtWk',
-    firstIn: true,
-    showPlus: true,
-    state: true,
+    mask: false,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -37,39 +34,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.dialog = this.selectComponent('#dialog');
-    
     var tmp = this;
+    wx.showLoading({
+      title: '',
+      mask: true
+    })
     wx.cloud.callFunction({
-      // 云函数名称
       name: 'login',
-      // 传给云函数的参数
       success: function (res) {
-        console.log(res.result) // 3
-        usr_id = res.result.openid;
-        console.log(usr_id);
-        // 跨域传值用Storage
-        wx.setStorage({
-          key: "_openid",
-          data: usr_id
-        })
-        //看是否存在账号
-        db.collection("userInfo").where({
-          _openid: res.result.openid
-        }).get({
-          success: function(res){
-            console.log(res)
-            if(res.data.length == 0){
-              tmp.dialog.show();
-            }
-            else{
-              wx.setStorage({
-                key: "userInfo",
-                data: res.data[0]
-              })
-            }
-          },
-        })
+        console.log(res.result.openid);
+        wx.setStorageSync("_openid", res.result.openid);
+        wx.hideLoading();
       },
       fail: console.error
     }),
@@ -104,14 +79,6 @@ Page({
         }
       })
 
-    if (this.data.state) {
-      //console.log(this.data.state);
-      setTimeout(function () {
-        this.setData({
-          state: false
-        });
-      }.bind(this), 500)
-    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -123,41 +90,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var tmp = this;
-    var DTasks;
-
-    const db = wx.cloud.database();
-    const _ = db.command;
-    console.log(tmp.data.adminOpenId);
-    
-    wx.setNavigationBarColor({
-      frontColor: "#ffffff",
-      backgroundColor: '#35A7C4',
-      animation: {
-        duration: 250,
-        timingFunc: 'easeIn'
-      }
-    })
-    if(!this.data.firstIn){
-      this.plusAni = wx.createAnimation({
-        duration: 250,
-        timingFunction: "ease",
-        delay: 0,
-        transformOrigin: '50% 50% 0'
-      })
-      this.setData({ showPlus: true });
-      this.plusAni.scale(1, 1).step();
-      this.setData({ plusAni: this.plusAni.export() })
-    }
     //新增 begin
-    this.cardAni = wx.createAnimation({
-      duration: 1000,
-      timingFunction: "ease-in-out",
-      delay: 0,
-      transformOrigin: '0 0 0'
-    })
-    this.cardAni.translate(0, 20).step();
-    this.setData({ cardAni: this.cardAni.export() });
+    
     //新增 end
   },
 
@@ -208,45 +142,17 @@ Page({
     })
   },
 
-  okEvent: function () {
-    //this.dialog.close();
-    const tmp = this;
-    const dialog = this.dialog;
-    const pack = this.dialog.onOk();
-    if (pack === false){
-      wx.showToast({
-        title: '请选择专业、年级',
-        icon: 'none'
-      })
-      return;
-    }
-    wx.showModal({
-      title: '提示',
-      content: '请确认信息的正确性\r\n确认后姓名、学号无法修改',
-      showCancel: true,
-      success: function (res){
-        if (res.confirm){
-          db.collection("userInfo").add({
-            data: pack,
-            success: () => {
-              console.log("success");
-              wx.showToast({
-                title: '提交成功',
-              })
-              dialog.close();
-            }
-            
-          })
-        }
-      }
+  navigate: function(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
     })
-    
-    
   },
 
-  navigate_to_vote: function() {
-    wx.navigateTo({
-      url: '/pages/vote/vote',
+  showInfo: ()=>{
+    wx.showModal({
+      title: '版本信息',
+      content: 'V1.1.0\r\nCoderAt\r\nCHIMO\r\n\r\nWelcome To Join Us!',
+      showCancel: false
     })
   }
 })

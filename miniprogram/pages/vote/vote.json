@@ -1,7 +1,17 @@
 {
   "usingComponents": {
-    "VoteDialog": "/components/VoteDialog/VoteDialog",
-    "ResultDialog": "/components/ResultDialog/ResultDialog",
-    "ConfirmDialog": "/components/ConfirmDialog/ConfirmDialog"
-  }
+    "wux-icon": "/components/dist/icon/index",
+    "wux-grids": "/components/dist/grids/index",
+    "wux-grid": "/components/dist/grid/index",
+    "wux-fab-button": "/components/dist/fab-button/index",
+    "swipeout": "/components/dist/swipeout/index",
+    "wux-toast": "/components/dist/toast/index",
+    "wux-dialog": "/components/dist/dialog/index",
+    "wux-input" : "/components/dist/input/index",
+    "wux-popup": "/components/dist/popup/index",
+    "wux-button": "/components/dist/button/index",
+    "wux-cell-group": "/components/dist/cell-group/index",
+    "wux-cell": "/components/dist/cell/index"
+  },
+  "navigationBarBackgroundColor": "#886aea"
 }

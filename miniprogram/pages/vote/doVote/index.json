@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "wux-icon": "/components/dist/icon/index",
+    "wux-checkbox-group": "/components/dist/checkbox-group/index",
+    "wux-checkbox": "/components/dist/checkbox/index",
+    "wux-button": "/components/dist/button/index",
+    "wux-toast": "/components/dist/toast/index"
+  },
+  "navigationBarBackgroundColor": "#444"
+}
